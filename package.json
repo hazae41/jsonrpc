@@ -1,0 +1,61 @@
+{
+  "type": "module",
+  "name": "@hazae41/jsonrpc",
+  "version": "0.0.0",
+  "description": "Rust-like JSON-RPC for TypeScript",
+  "homepage": "https://github.com/hazae41/jsonrpc",
+  "repository": "github:hazae41/jsonrpc",
+  "author": "hazae41",
+  "license": "MIT",
+  "main": "./dist/cjs/index.cjs",
+  "module": "./dist/esm/index.mjs",
+  "types": "./dist/types/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "./dist/esm",
+    "./dist/cjs",
+    "./dist/types"
+  ],
+  "scripts": {
+    "build": "rimraf dist && rollup -c",
+    "test": "node ./dist/test/index.test.mjs",
+    "prepare": "npm run build"
+  },
+  "devDependencies": {
+    "@hazae41/phobos": "^1.0.10",
+    "@rollup/plugin-typescript": "^11.1.3",
+    "@types/node": "^20.6.0",
+    "rimraf": "^5.0.1",
+    "rollup": "^3.29.0",
+    "rollup-plugin-dts": "^6.0.1",
+    "rollup-plugin-node-externals": "^6.1.1",
+    "typescript": "^5.2.2"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/index.mjs",
+      "require": "./dist/cjs/index.cjs"
+    }
+  },
+  "keywords": [
+    "jsonrpc",
+    "rpc",
+    "result",
+    "rust",
+    "data",
+    "error",
+    "catching",
+    "ok",
+    "err",
+    "unwrap",
+    "wrap",
+    "typescript",
+    "esmodules",
+    "tested",
+    "unit-tested"
+  ],
+  "dependencies": {
+    "@hazae41/result": "^1.1.4"
+  }
+}
