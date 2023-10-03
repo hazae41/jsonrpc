@@ -51,7 +51,7 @@ console.log(data) // "world"
 import { RpcRequestInit, RpcRequestPreinit, RpcResponse, RpcMethodNotFoundError, RpcInvalidParamsError } from "@hazae41/jsonrpc"
 
 /**
- * Handle JSON requests and returns a JSON response
+ * Handle JSON requests and return a JSON response
  */
 function onMessage(message: string): string {
   const request = JSON.parse(message) as RpcRequestInit<unknown>
@@ -61,7 +61,7 @@ function onMessage(message: string): string {
 }
 
 /**
- * Route requests and returns a result
+ * Route requests and return a result
  */
 function onRequest(request: RpcRequestPreinit<unknown>): Result<unknown, Error> {
   if (request.method === "hello_world")
