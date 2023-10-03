@@ -22,7 +22,7 @@ npm i @hazae41/jsonrpc
 ### Request using fetch
 
 ```tsx
-import { RpcCounter } from "@hazae41/jsonrpc"
+import { RpcCounter, RpcResponse } from "@hazae41/jsonrpc"
 
 /**
  * Assign an incremental id to a request
@@ -48,6 +48,8 @@ console.log(data) // "world"
 ### Handle requests
 
 ```tsx
+import { RpcRequestInit, RpcRequestPreinit, RpcResponse, RpcMethodNotFoundError, RpcInvalidParamsError } from "@hazae41/jsonrpc"
+
 /**
  * Handle JSON requests and returns a JSON response
  */
