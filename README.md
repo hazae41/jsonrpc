@@ -55,8 +55,7 @@ import { RpcRequestInit, RpcRequestPreinit, RpcResponse, RpcMethodNotFoundError,
  */
 function onMessage(message: string): string {
   const request = JSON.parse(message) as RpcRequestInit<unknown>
-  const result = onRequest(request)
-  const response = RpcResponse.rewrap(request.id, result)
+  const response = RpcResponse.rewrap(request.id, onRequest(request))
   return JSON.stringify(response)
 }
 
