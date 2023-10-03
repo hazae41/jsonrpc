@@ -35,7 +35,7 @@ const request = counter.prepare({ method: "hello_world", params: ["hello"] })
  */
 const body = JSON.stringify(request)
 const headers = { "Content-Type": "application/json" }
-const res = await fetch("https://example.com", { body })
+const res = await fetch("https://example.com", { method: "POST", body, headers })
 
 /**
  * JSON-parse the response and unwrap it
