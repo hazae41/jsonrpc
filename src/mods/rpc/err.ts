@@ -47,6 +47,14 @@ export class RpcError extends Error {
     return new RpcError(code, message, data)
   }
 
+  static rewrap(error: unknown) {
+    if (error instanceof RpcError)
+      return error
+    if (error instanceof Error)
+      return new RpcError(-32603, error.message)
+    return new RpcError(-32603, "An unknown error occured")
+  }
+
   /**
    * Used by JSON.stringify
    */
@@ -132,13 +140,7 @@ export class RpcErr extends Err<RpcError> {
   }
 
   static rewrap<T extends Err.Infer<T>>(id: RpcId, result: T) {
-    if (result.inner instanceof RpcError)
-      return new RpcErr(id, result.inner)
-
-    if (result.inner instanceof Error)
-      return new RpcErr(id, new RpcError(-32603, result.inner.message))
-
-    return new RpcErr(id, new RpcError(-32603, "An unknown error occured"))
+    return new RpcErr(id, RpcError.rewrap(result.inner))
   }
 
 }
