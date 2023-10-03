@@ -31,6 +31,9 @@ export namespace RpcResponse {
     if (result.isOk())
       return new RpcOk(id, result.inner)
 
+    if (result.inner instanceof RpcError)
+      return new RpcErr(id, result.inner)
+
     if (result.inner instanceof Error)
       return new RpcErr(id, new RpcError(-32603, result.inner.message))
 
