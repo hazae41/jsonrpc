@@ -15,7 +15,7 @@ npm i @hazae41/jsonrpc
 - No external dependencies
 - Rust-like patterns
 - Uses `@hazae41/result`
-- Specification compliant
+- [Specification](https://www.jsonrpc.org/specification) compliant
 
 ## Usage
 
