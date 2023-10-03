@@ -71,7 +71,7 @@ function onRequest(request: RpcRequestPreinit<unknown>): Result<unknown, Error> 
  * Handle "hello_world" requests
  */
 function onHelloWorld(request: RpcRequestPreinit<unknown>): Result<string, RpcInvalidParamsError> {
-  const [hello] = (request as RpcRequestInit<[string]>).params
+  const [hello] = (request as RpcRequestPreinit<[string]>).params
 
   if (hello === "hello")
     return new Ok("world")
