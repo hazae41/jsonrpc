@@ -30,4 +30,8 @@ export class RpcOk<T = unknown> extends Ok<T> {
     return new RpcOk(init.id, init.result)
   }
 
+  static rewrap<T extends Ok.Infer<T>>(id: RpcId, result: T) {
+    return new RpcOk(id, result.inner)
+  }
+
 }

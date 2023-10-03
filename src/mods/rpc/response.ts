@@ -1,5 +1,5 @@
 import { Err, Ok, Result } from "@hazae41/result"
-import { RpcErr, RpcErrInit, RpcError } from "./err.js"
+import { RpcErr, RpcErrInit } from "./err.js"
 import { RpcOk, RpcOkInit } from "./ok.js"
 import { RpcId } from "./request.js"
 
@@ -26,18 +26,9 @@ export namespace RpcResponse {
   export function rewrap<T extends Result.Infer<T>>(id: RpcId, result: T): RpcResponse<Ok.Inner<T>>
 
   export function rewrap<T extends Result.Infer<T>>(id: RpcId, result: T): RpcResponse<Ok.Inner<T>> {
-    result.ignore()
-
-    if (result.isOk())
-      return new RpcOk(id, result.inner)
-
-    if (result.inner instanceof RpcError)
-      return new RpcErr(id, result.inner)
-
-    if (result.inner instanceof Error)
-      return new RpcErr(id, new RpcError(-32603, result.inner.message))
-
-    return new RpcErr(id, new RpcError(-32603, "An unknown error occured"))
+    if (result.isErr())
+      return RpcErr.rewrap(id, result)
+    return RpcOk.rewrap(id, result)
   }
 
 }

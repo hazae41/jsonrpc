@@ -131,4 +131,14 @@ export class RpcErr extends Err<RpcError> {
     return new RpcErr(init.id, RpcError.from(init.error))
   }
 
+  static rewrap<T extends Err.Infer<T>>(id: RpcId, result: T) {
+    if (result.inner instanceof RpcError)
+      return new RpcErr(id, result.inner)
+
+    if (result.inner instanceof Error)
+      return new RpcErr(id, new RpcError(-32603, result.inner.message))
+
+    return new RpcErr(id, new RpcError(-32603, "An unknown error occured"))
+  }
+
 }
