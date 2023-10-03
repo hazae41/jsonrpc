@@ -19,7 +19,7 @@ npm i @hazae41/jsonrpc
 
 ## Usage
 
-### Request over HTTP
+### Request using fetch
 
 ```tsx
 import { RpcCounter } from "@hazae41/jsonrpc"
