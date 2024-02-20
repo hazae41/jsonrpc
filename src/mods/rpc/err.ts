@@ -51,8 +51,8 @@ export class RpcError extends Error {
     if (error instanceof RpcError)
       return error
     if (error instanceof Error)
-      return new RpcError(-32603, error.message)
-    return new RpcError(-32603, "An unknown error occured")
+      return new RpcInternalError(error.message)
+    return new RpcInternalError()
   }
 
   /**
@@ -72,8 +72,8 @@ export class RpcParseError extends RpcError {
   static readonly code = RpcError.codes.ParseError
   static readonly message = RpcError.messages.ParseError
 
-  constructor() {
-    super(RpcError.codes.ParseError, RpcError.messages.ParseError)
+  constructor(message: string = RpcError.messages.ParseError) {
+    super(RpcError.codes.ParseError, message)
   }
 }
 
@@ -84,9 +84,10 @@ export class RpcInvalidRequestError extends RpcError {
   static readonly code = RpcError.codes.InvalidRequest
   static readonly message = RpcError.messages.InvalidRequest
 
-  constructor() {
-    super(RpcError.codes.InvalidRequest, RpcError.messages.InvalidRequest)
+  constructor(message: string = RpcError.messages.InvalidRequest) {
+    super(RpcError.codes.InvalidRequest, message)
   }
+
 }
 
 export class RpcMethodNotFoundError extends RpcError {
@@ -96,9 +97,10 @@ export class RpcMethodNotFoundError extends RpcError {
   static readonly code = RpcError.codes.MethodNotFound
   static readonly message = RpcError.messages.MethodNotFound
 
-  constructor() {
-    super(RpcError.codes.MethodNotFound, RpcError.messages.MethodNotFound)
+  constructor(message: string = RpcError.messages.MethodNotFound) {
+    super(RpcError.codes.MethodNotFound, message)
   }
+
 }
 
 export class RpcInvalidParamsError extends RpcError {
@@ -108,9 +110,10 @@ export class RpcInvalidParamsError extends RpcError {
   static readonly code = RpcError.codes.InvalidParams
   static readonly message = RpcError.messages.InvalidParams
 
-  constructor() {
-    super(RpcError.codes.InvalidParams, RpcError.messages.InvalidParams)
+  constructor(message: string = RpcError.messages.InvalidParams) {
+    super(RpcError.codes.InvalidParams, message)
   }
+
 }
 
 export class RpcInternalError extends RpcError {
@@ -120,9 +123,10 @@ export class RpcInternalError extends RpcError {
   static readonly code = RpcError.codes.InternalError
   static readonly message = RpcError.messages.InternalError
 
-  constructor() {
-    super(RpcError.codes.InternalError, RpcError.messages.InternalError)
+  constructor(message: string = RpcError.messages.InternalError) {
+    super(RpcError.codes.InternalError, message)
   }
+
 }
 
 export class RpcErr extends Err<RpcError> {
