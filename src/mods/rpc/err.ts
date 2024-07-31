@@ -63,9 +63,6 @@ export class RpcError extends Error {
     return new RpcInternalError()
   }
 
-  /**
-   * Used by JSON.stringify
-   */
   toJSON() {
     const { code, message, data } = this
     return { code, message, data }
