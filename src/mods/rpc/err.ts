@@ -13,6 +13,14 @@ export interface RpcErrInit {
   readonly error: RpcErrorInit
 }
 
+export namespace RpcErrInit {
+
+  export function from(response: RpcErr): RpcErrInit {
+    return response.toJSON()
+  }
+
+}
+
 export class RpcError extends Error {
   readonly #class = RpcError
   readonly name = this.#class.name
@@ -145,6 +153,14 @@ export class RpcErr extends Err<RpcError> {
 
   static rewrap<T extends Err.Infer<T>>(id: RpcId, result: T) {
     return new RpcErr(id, RpcError.rewrap(result.inner))
+  }
+
+  toJSON() {
+    const { jsonrpc, id } = this
+
+    const error = this.error.toJSON()
+
+    return { jsonrpc, id, error } as const
   }
 
 }

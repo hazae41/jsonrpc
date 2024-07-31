@@ -10,8 +10,7 @@ export interface RpcOkInit<T = unknown> {
 export namespace RpcOkInit {
 
   export function from<T>(response: RpcOk<T>): RpcOkInit<T> {
-    const { jsonrpc, id, result } = response
-    return { jsonrpc, id, result }
+    return response.toJSON()
   }
 
 }
@@ -32,6 +31,11 @@ export class RpcOk<T = unknown> extends Ok<T> {
 
   static rewrap<T extends Ok.Infer<T>>(id: RpcId, result: T) {
     return new RpcOk(id, result.inner)
+  }
+
+  toJSON() {
+    const { jsonrpc, id, result } = this
+    return { jsonrpc, id, result } as const
   }
 
 }
