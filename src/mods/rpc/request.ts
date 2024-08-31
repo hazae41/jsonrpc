@@ -34,7 +34,7 @@ export interface RpcParamlessRequestInit<T = unknown> {
   readonly params?: T
 }
 
-export class RpcRequest<T> {
+export class RpcRequest<T = unknown> {
   readonly jsonrpc = "2.0" as const
 
   constructor(
