@@ -25,7 +25,7 @@ export type RpcRequestInit<T = unknown> =
 export interface RpcParamfulRequestInit<T = unknown> {
   readonly id: RpcId
   readonly method: string
-  readonly params: NonNullable<T>
+  readonly params: T
 }
 
 export interface RpcParamlessRequestInit<T = unknown> {
