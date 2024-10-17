@@ -1,9 +1,8 @@
 export type RpcId = number | string | null
 
 export type RpcRequestPreinit<T = unknown> =
-  undefined extends T
-  ? RpcParamlessRequestPreinit<T>
-  : RpcParamfulRequestPreinit<T>
+  | (undefined extends T ? RpcParamlessRequestPreinit : never)
+  | RpcParamfulRequestPreinit<T>
 
 export interface RpcParamfulRequestPreinit<T = unknown> {
   readonly id?: RpcId
@@ -11,27 +10,26 @@ export interface RpcParamfulRequestPreinit<T = unknown> {
   readonly params: T
 }
 
-export interface RpcParamlessRequestPreinit<T = unknown> {
+export interface RpcParamlessRequestPreinit {
   readonly id?: RpcId
   readonly method: string
-  readonly params?: T
 }
 
 export type RpcRequestInit<T = unknown> =
-  undefined extends T
-  ? RpcParamlessRequestInit<T>
-  : RpcParamfulRequestInit<T>
+  | (undefined extends T ? RpcParamlessRequestInit : never)
+  | RpcParamfulRequestInit<T>
 
 export interface RpcParamfulRequestInit<T = unknown> {
+  readonly jsonrpc: "2.0"
   readonly id: RpcId
   readonly method: string
   readonly params: T
 }
 
-export interface RpcParamlessRequestInit<T = unknown> {
+export interface RpcParamlessRequestInit {
+  readonly jsonrpc: "2.0"
   readonly id: RpcId
   readonly method: string
-  readonly params?: T
 }
 
 export class RpcRequest<T = unknown> {
@@ -40,15 +38,17 @@ export class RpcRequest<T = unknown> {
   constructor(
     readonly id: RpcId,
     readonly method: string,
-    readonly params?: T
+    readonly params: T
   ) { }
 
-  static from<T>(init: RpcRequestInit<T>) {
+  static from<T>(init: RpcRequestInit<T>): RpcRequest<T>
+
+  static from<T>(init: RpcParamfulRequestInit<T>) {
     const { id, method, params } = init
     return new RpcRequest(id, method, params)
   }
 
-  toJSON() {
+  toJSON(): RpcRequestInit<T> {
     const { jsonrpc, id, method, params } = this
     return { jsonrpc, id, method, params } as const
   }

@@ -1,10 +1,19 @@
 import { Ok } from "@hazae41/result"
 import { RpcId } from "./request.js"
 
-export interface RpcOkInit<T = unknown> {
+export type RpcOkInit<T = unknown> =
+  | (undefined extends T ? RpcResultlessOkInit : never)
+  | RpcResultfulOkInit<T>
+
+export interface RpcResultfulOkInit<T = unknown> {
   readonly jsonrpc: "2.0"
-  readonly id: RpcId,
+  readonly id: RpcId
   readonly result: T
+}
+
+export interface RpcResultlessOkInit {
+  readonly jsonrpc: "2.0"
+  readonly id: RpcId
 }
 
 export namespace RpcOkInit {
@@ -25,7 +34,9 @@ export class RpcOk<T = unknown> extends Ok<T> {
     super(result)
   }
 
-  static from<T>(init: RpcOkInit<T>) {
+  static from<T>(init: RpcOkInit<T>): RpcOk<T>
+
+  static from<T>(init: RpcResultfulOkInit<T>) {
     return new RpcOk(init.id, init.result)
   }
 
@@ -33,7 +44,7 @@ export class RpcOk<T = unknown> extends Ok<T> {
     return new RpcOk(id, result.inner)
   }
 
-  toJSON() {
+  toJSON(): RpcOkInit<T> {
     const { jsonrpc, id, result } = this
     return { jsonrpc, id, result } as const
   }
