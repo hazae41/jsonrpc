@@ -1,21 +1,10 @@
 import { Ok } from "@hazae41/result"
 import { RpcId } from "./request.js"
 
-export type RpcOkInit<T = unknown> =
-  undefined extends T
-  ? RpcResultlessOkInit<T>
-  : RpcResultfulOkInit<T>
-
-export interface RpcResultfulOkInit<T = unknown> {
+export interface RpcOkInit<T = unknown> {
   readonly jsonrpc: "2.0"
-  readonly id: RpcId
+  readonly id: RpcId,
   readonly result: T
-}
-
-export interface RpcResultlessOkInit<T = unknown> {
-  readonly jsonrpc: "2.0"
-  readonly id: RpcId
-  readonly result?: T
 }
 
 export namespace RpcOkInit {
