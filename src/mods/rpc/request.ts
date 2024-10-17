@@ -8,7 +8,7 @@ export type RpcRequestPreinit<T = unknown> =
 export interface RpcParamfulRequestPreinit<T = unknown> {
   readonly id?: RpcId
   readonly method: string,
-  readonly params: NonNullable<T>
+  readonly params: T
 }
 
 export interface RpcParamlessRequestPreinit<T = unknown> {
