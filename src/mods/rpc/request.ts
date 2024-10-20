@@ -31,6 +31,7 @@ export interface RpcParamlessRequestInit {
   readonly jsonrpc: "2.0"
   readonly id: RpcId
   readonly method: string
+  readonly params?: undefined
 }
 
 export class RpcRequest<T = unknown> {
