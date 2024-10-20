@@ -13,6 +13,7 @@ export interface RpcParamfulRequestPreinit<T = unknown> {
 export interface RpcParamlessRequestPreinit {
   readonly id?: RpcId
   readonly method: string
+  readonly params?: undefined
 }
 
 export type RpcRequestInit<T = unknown> =
