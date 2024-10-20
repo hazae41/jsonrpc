@@ -1,19 +1,10 @@
 import { Ok } from "@hazae41/result"
 import { RpcId } from "./request.js"
 
-export type RpcOkInit<T = unknown> =
-  | (undefined extends T ? RpcResultlessOkInit : never)
-  | RpcResultfulOkInit<T>
-
-export interface RpcResultfulOkInit<T = unknown> {
+export interface RpcOkInit<T = unknown> {
   readonly jsonrpc: "2.0"
   readonly id: RpcId
   readonly result: T
-}
-
-export interface RpcResultlessOkInit {
-  readonly jsonrpc: "2.0"
-  readonly id: RpcId
 }
 
 export namespace RpcOkInit {
@@ -34,9 +25,7 @@ export class RpcOk<T = unknown> extends Ok<T> {
     super(result)
   }
 
-  static from<T>(init: RpcOkInit<T>): RpcOk<T>
-
-  static from<T>(init: RpcResultfulOkInit<T>) {
+  static from<T>(init: RpcOkInit<T>) {
     return new RpcOk(init.id, init.result)
   }
 
