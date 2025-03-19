@@ -1,4 +1,5 @@
 import { Err } from "@hazae41/result"
+import { Errors } from "libs/errors/index.js"
 import { RpcId } from "./request.js"
 
 export interface RpcErrorInit {
@@ -58,9 +59,7 @@ export class RpcError extends Error {
   static rewrap(error: unknown) {
     if (error instanceof RpcError)
       return error
-    if (error instanceof Error)
-      return new RpcInternalError(error.message)
-    return new RpcInternalError()
+    return new RpcInternalError(Errors.toString(error))
   }
 
   toJSON() {
