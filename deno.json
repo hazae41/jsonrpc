@@ -1,6 +1,6 @@
 {
   "name": "@hazae41/jsonrpc",
-  "version": "3.0.1",
+  "version": "1.1.8",
   "imports": {
     "@/": "./src/",
     "@hazae41/phobos": "jsr:@hazae41/phobos@^2.0.13",
