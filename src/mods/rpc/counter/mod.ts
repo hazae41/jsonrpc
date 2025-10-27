@@ -1,4 +1,4 @@
-import { RpcParamfulRequestPreinit, RpcRequest, RpcRequestPreinit } from "./request.js"
+import { type RpcParamfulRequestPreinit, RpcRequest, type RpcRequestPreinit } from "@/mods/rpc/request/mod.ts"
 
 export class RpcCounter {
 

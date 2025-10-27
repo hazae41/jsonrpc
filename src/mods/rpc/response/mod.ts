@@ -1,7 +1,10 @@
-import { Err, Ok, Result } from "@hazae41/result"
-import { RpcErr, RpcErrInit } from "./err.js"
-import { RpcOk, RpcOkInit } from "./ok.js"
-import { RpcId } from "./request.js"
+export * from "./err/mod.ts"
+export * from "./ok/mod.ts"
+
+import type { RpcId } from "@/mods/rpc/request/mod.ts"
+import type { Err, Ok, Result } from "@hazae41/result-and-option"
+import { RpcErr, type RpcErrInit } from "./err/mod.ts"
+import { RpcOk, type RpcOkInit } from "./ok/mod.ts"
 
 export type RpcResponseInit<T = unknown> =
   | RpcOkInit<T>
@@ -13,7 +16,7 @@ export type RpcResponse<T = unknown> =
 
 export namespace RpcResponse {
 
-  export function from<T>(init: RpcResponseInit<T>) {
+  export function from<T>(init: RpcResponseInit<T>): RpcResponse<T> {
     if ("error" in init)
       return RpcErr.from(init)
     return RpcOk.from(init)

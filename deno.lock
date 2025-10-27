@@ -1,0 +1,60 @@
+{
+  "version": "5",
+  "specifiers": {
+    "jsr:@hazae41/phobos@^2.0.13": "2.0.16",
+    "jsr:@hazae41/result-and-option@^2.0.9": "2.0.9",
+    "jsr:@hazae41/tscousin@^1.0.28": "1.0.28",
+    "npm:@hazae41/phobos@^2.0.13": "2.0.16",
+    "npm:@hazae41/tscousin@^1.0.28": "1.0.28",
+    "npm:@types/node@*": "24.2.0",
+    "npm:typescript@^5.9.3": "5.9.3"
+  },
+  "jsr": {
+    "@hazae41/phobos@2.0.16": {
+      "integrity": "1b4ed1a675cfbf502d3fd5a57108eedad3bff2b43238f9fd1884ea15c762a4fc"
+    },
+    "@hazae41/result-and-option@2.0.9": {
+      "integrity": "e785739ccbce2dcc8a3d32e65298e5f2123d3d09c9baa26e2128661192bef646"
+    },
+    "@hazae41/tscousin@1.0.28": {
+      "integrity": "5218915c136dd5c2b155cec4cdc38915a6cee42db17f3598ad35f47a19afb928"
+    }
+  },
+  "npm": {
+    "@hazae41/phobos@2.0.16": {
+      "integrity": "sha512-XP1KGvTY9dNWIz0EG91BdgBXXZXG/AF5f9LP57FbyF1ut3QjDe18+QLhScrA1RmuX/CEYrmp60jD160zZTPZaw=="
+    },
+    "@hazae41/tscousin@1.0.28": {
+      "integrity": "sha512-Wrg/66m0hLexrifpzJ5a/D7Jzb7FhLzBWrCFAgjZa+DIU8prA5rX4MwD5K34UZ6jsYBRZsYwNeVEYRqOIJHOEQ==",
+      "bin": true
+    },
+    "@types/node@24.2.0": {
+      "integrity": "sha512-3xyG3pMCq3oYCNg7/ZP+E1ooTaGB4cG8JWRsqqOYQdbWNY4zbaV0Ennrd7stjiJEFZCaybcIgpTjJWHRfBSIDw==",
+      "dependencies": [
+        "undici-types"
+      ]
+    },
+    "typescript@5.9.3": {
+      "integrity": "sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==",
+      "bin": true
+    },
+    "undici-types@7.10.0": {
+      "integrity": "sha512-t5Fy/nfn+14LuOc2KNYg75vZqClpAiqscVvMygNnlsHBFpSXdJaYtXMcdNLpl/Qvc3P2cB3s6lOV51nqsFq4ag=="
+    }
+  },
+  "workspace": {
+    "dependencies": [
+      "jsr:@hazae41/phobos@^2.0.13",
+      "jsr:@hazae41/result-and-option@^2.0.9",
+      "jsr:@hazae41/tscousin@^1.0.28"
+    ],
+    "packageJson": {
+      "dependencies": [
+        "npm:@hazae41/phobos@^2.0.13",
+        "npm:@hazae41/result-and-option@^2.0.10",
+        "npm:@hazae41/tscousin@^1.0.28",
+        "npm:typescript@^5.9.3"
+      ]
+    }
+  }
+}

@@ -1,6 +1,6 @@
-import { Err } from "@hazae41/result"
-import { Errors } from "libs/errors/index.js"
-import { RpcId } from "./request.js"
+import { Errors } from "@/libs/errors/mod.ts"
+import type { RpcId } from "@/mods/rpc/request/mod.ts"
+import { Err } from "@hazae41/result-and-option"
 
 export interface RpcErrorInit {
   readonly code: number,
@@ -8,23 +8,9 @@ export interface RpcErrorInit {
   readonly data: unknown
 }
 
-export interface RpcErrInit {
-  readonly jsonrpc: "2.0"
-  readonly id: RpcId
-  readonly error: RpcErrorInit
-}
-
-export namespace RpcErrInit {
-
-  export function from(response: RpcErr): RpcErrInit {
-    return response.toJSON()
-  }
-
-}
-
 export class RpcError extends Error {
   readonly #class = RpcError
-  readonly name = this.#class.name
+  readonly name: string = this.#class.name
 
   static readonly codes = {
     ParseError: -32700,
@@ -51,18 +37,18 @@ export class RpcError extends Error {
     super(message)
   }
 
-  static from(init: RpcErrorInit) {
+  static from(init: RpcErrorInit): RpcError {
     const { code, message, data } = init
     return new RpcError(code, message, data)
   }
 
-  static rewrap(error: unknown) {
+  static rewrap(error: unknown): RpcError {
     if (error instanceof RpcError)
       return error
     return new RpcInternalError(Errors.toString(error))
   }
 
-  toJSON() {
+  toJSON(): RpcErrorInit {
     const { code, message, data } = this
     return { code, message, data }
   }
@@ -71,7 +57,7 @@ export class RpcError extends Error {
 
 export class RpcParseError extends RpcError {
   readonly #class = RpcParseError
-  readonly name = this.#class.name
+  readonly name: string = this.#class.name
 
   static readonly code = RpcError.codes.ParseError
   static readonly message = RpcError.messages.ParseError
@@ -83,7 +69,7 @@ export class RpcParseError extends RpcError {
 
 export class RpcInvalidRequestError extends RpcError {
   readonly #class = RpcInvalidRequestError
-  readonly name = this.#class.name
+  readonly name: string = this.#class.name
 
   static readonly code = RpcError.codes.InvalidRequest
   static readonly message = RpcError.messages.InvalidRequest
@@ -96,7 +82,7 @@ export class RpcInvalidRequestError extends RpcError {
 
 export class RpcMethodNotFoundError extends RpcError {
   readonly #class = RpcMethodNotFoundError
-  readonly name = this.#class.name
+  readonly name: string = this.#class.name
 
   static readonly code = RpcError.codes.MethodNotFound
   static readonly message = RpcError.messages.MethodNotFound
@@ -109,7 +95,7 @@ export class RpcMethodNotFoundError extends RpcError {
 
 export class RpcInvalidParamsError extends RpcError {
   readonly #class = RpcInvalidParamsError
-  readonly name = this.#class.name
+  readonly name: string = this.#class.name
 
   static readonly code = RpcError.codes.InvalidParams
   static readonly message = RpcError.messages.InvalidParams
@@ -122,7 +108,7 @@ export class RpcInvalidParamsError extends RpcError {
 
 export class RpcInternalError extends RpcError {
   readonly #class = RpcInternalError
-  readonly name = this.#class.name
+  readonly name: string = this.#class.name
 
   static readonly code = RpcError.codes.InternalError
   static readonly message = RpcError.messages.InternalError
@@ -131,6 +117,12 @@ export class RpcInternalError extends RpcError {
     super(RpcError.codes.InternalError, message)
   }
 
+}
+
+export interface RpcErrInit {
+  readonly jsonrpc: "2.0"
+  readonly id: RpcId
+  readonly error: RpcErrorInit
 }
 
 export class RpcErr extends Err<RpcError> {
@@ -143,15 +135,15 @@ export class RpcErr extends Err<RpcError> {
     super(error)
   }
 
-  static from(init: RpcErrInit) {
+  static from(init: RpcErrInit): RpcErr {
     return new RpcErr(init.id, RpcError.from(init.error))
   }
 
-  static rewrap<T extends Err.Infer<T>>(id: RpcId, result: T) {
+  static rewrap<T extends Err.Infer<T>>(id: RpcId, result: T): RpcErr {
     return new RpcErr(id, RpcError.rewrap(result.inner))
   }
 
-  toJSON() {
+  toJSON(): RpcErrInit {
     const { jsonrpc, id } = this
 
     const error = this.error.toJSON()

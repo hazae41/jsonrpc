@@ -1,18 +1,10 @@
-import { Ok } from "@hazae41/result"
-import { RpcId } from "./request.js"
+import type { RpcId } from "@/mods/rpc/request/mod.ts"
+import { Ok } from "@hazae41/result-and-option"
 
 export interface RpcOkInit<T = unknown> {
   readonly jsonrpc: "2.0"
   readonly id: RpcId
   readonly result: T
-}
-
-export namespace RpcOkInit {
-
-  export function from<T>(response: RpcOk<T>): RpcOkInit<T> {
-    return response.toJSON()
-  }
-
 }
 
 export class RpcOk<T = unknown> extends Ok<T> {
@@ -25,11 +17,11 @@ export class RpcOk<T = unknown> extends Ok<T> {
     super(result)
   }
 
-  static from<T>(init: RpcOkInit<T>) {
+  static from<T>(init: RpcOkInit<T>): RpcOk<T> {
     return new RpcOk(init.id, init.result)
   }
 
-  static rewrap<T extends Ok.Infer<T>>(id: RpcId, result: T) {
+  static rewrap<T extends Ok.Infer<T>>(id: RpcId, result: T): RpcOk<Ok.Inner<T>> {
     return new RpcOk(id, result.inner)
   }
 
