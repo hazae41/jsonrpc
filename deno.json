@@ -4,7 +4,7 @@
   "imports": {
     "@/": "./src/",
     "@hazae41/phobos": "jsr:@hazae41/phobos@^2.0.13",
-    "@hazae41/result-and-option": "jsr:@hazae41/result-and-option@^2.0.9",
+    "@hazae41/result-and-option": "jsr:@hazae41/result-and-option@^2.0.10",
     "@hazae41/tscousin": "jsr:@hazae41/tscousin@^1.0.28"
   },
   "exports": {
