@@ -3,10 +3,14 @@
 Rust-like JSON-RPC for TypeScript
 
 ```bash
-npm i @hazae41/jsonrpc
+npm install @hazae41/jsonrpc
 ```
 
-[**Node Package 📦**](https://www.npmjs.com/package/@hazae41/jsonrpc)
+```bash
+deno install jsr:@hazae41/jsonrpc
+```
+
+[**📦 NPM**](https://www.npmjs.com/package/@hazae41/jsonrpc) • [**📦 JSR**](https://jsr.io/@hazae41/jsonrpc)
 
 ## Features
 
