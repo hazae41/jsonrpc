@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "@hazae41/jsonrpc",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "description": "Rust-like JSON-RPC for TypeScript",
   "repository": "github:hazae41/jsonrpc",
   "author": "hazae41",
