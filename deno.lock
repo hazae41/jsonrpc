@@ -1,10 +1,10 @@
 {
   "version": "5",
   "specifiers": {
-    "jsr:@hazae41/phobos@^2.0.13": "2.0.16",
+    "jsr:@hazae41/phobos@^2.0.16": "2.0.16",
     "jsr:@hazae41/result-and-option@^2.0.10": "2.0.10",
     "jsr:@hazae41/tscousin@^1.0.28": "1.0.28",
-    "npm:@hazae41/phobos@^2.0.13": "2.0.16",
+    "npm:@hazae41/phobos@^2.0.16": "2.0.16",
     "npm:@hazae41/result-and-option@^2.0.10": "2.0.10",
     "npm:@hazae41/tscousin@^1.0.28": "1.0.28",
     "npm:@types/node@*": "24.2.0",
@@ -48,13 +48,13 @@
   },
   "workspace": {
     "dependencies": [
-      "jsr:@hazae41/phobos@^2.0.13",
+      "jsr:@hazae41/phobos@^2.0.16",
       "jsr:@hazae41/result-and-option@^2.0.10",
       "jsr:@hazae41/tscousin@^1.0.28"
     ],
     "packageJson": {
       "dependencies": [
-        "npm:@hazae41/phobos@^2.0.13",
+        "npm:@hazae41/phobos@^2.0.16",
         "npm:@hazae41/result-and-option@^2.0.10",
         "npm:@hazae41/tscousin@^1.0.28",
         "npm:typescript@^5.9.3"
