@@ -10,7 +10,8 @@
     "moduleResolution": "nodenext",
     "outDir": "./out",
     "declaration": true,
-    "noCheck": true
+    "noCheck": true,
+    "strict": true
   },
   "include": [
     "./src/**/*"

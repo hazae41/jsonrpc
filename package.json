@@ -2,14 +2,12 @@
   "type": "module",
   "name": "@hazae41/jsonrpc",
   "version": "1.1.11",
-  "description": "Rust-like JSON-RPC for TypeScript",
+  "description": "JSON-RPC for the web",
   "repository": "github:hazae41/jsonrpc",
   "author": "hazae41",
   "license": "MIT",
   "scripts": {
-    "examine": "deno lint ./src && deno check ./src && deno test ./src",
-    "version": "deno -RW ./x.vsync.ts && git add deno.json",
-    "prepare": "deno -RW ./x.dsync.ts && deno install",
+    "examine": "deno lint ./src && deno check ./src && deno test -RW ./src",
     "prepack": "rm -rf ./out && tsc && tscousin"
   },
   "files": [
@@ -22,12 +20,14 @@
     }
   },
   "dependencies": {
-    "@hazae41/result-and-option": "^2.0.10"
+    "@hazae41/result-and-option": "^2.1.1"
   },
   "devDependencies": {
     "@hazae41/phobos": "^2.0.16",
     "@hazae41/tscousin": "^1.0.28",
-    "typescript": "^5.9.3"
+    "@types/node": "^25.9.1",
+    "deno": "^2.8.1",
+    "typescript": "^6.0.3"
   },
   "keywords": [
     "jsonrpc",

@@ -1,3 +1,5 @@
+// deno-lint-ignore-file no-namespace
+
 export namespace Errors {
 
   export function toJSON(error: unknown): unknown {

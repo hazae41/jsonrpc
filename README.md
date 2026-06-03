@@ -1,16 +1,12 @@
 # JSON-RPC
 
-Rust-like JSON-RPC for TypeScript
+JSON-RPC for the web
 
 ```bash
 npm install @hazae41/jsonrpc
 ```
 
-```bash
-deno install jsr:@hazae41/jsonrpc
-```
-
-[**📦 NPM**](https://www.npmjs.com/package/@hazae41/jsonrpc) • [**📦 JSR**](https://jsr.io/@hazae41/jsonrpc)
+[**📦 NPM**](https://www.npmjs.com/package/@hazae41/jsonrpc)
 
 ## Features
 
@@ -18,7 +14,7 @@ deno install jsr:@hazae41/jsonrpc
 - 100% TypeScript and ESM
 - No external dependencies
 - Rust-like patterns
-- Uses `@hazae41/result`
+- Uses `@hazae41/result-and-option`
 - [Specification](https://www.jsonrpc.org/specification) compliant
 
 ## Usage

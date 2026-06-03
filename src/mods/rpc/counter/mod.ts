@@ -7,8 +7,7 @@ export class RpcCounter {
   prepare<T>(init: RpcRequestPreinit<T>): RpcRequest<T>
 
   prepare<T>(init: RpcParamfulRequestPreinit<T>): RpcRequest<T> {
-    const { id = this.id++, method, params } = init
-    return new RpcRequest(id, method, params)
+    return new RpcRequest(this.id++, init.method, init.params)
   }
 
 }

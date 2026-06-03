@@ -1,3 +1,5 @@
+// deno-lint-ignore-file no-namespace
+
 export * from "./err/mod.ts"
 export * from "./ok/mod.ts"
 
@@ -19,19 +21,19 @@ export namespace RpcResponse {
   export function from<T>(init: RpcResponseInit<T>): RpcResponse<T> {
     if ("error" in init)
       return RpcErr.from(init)
-    return RpcOk.from(init)
+    if ("result" in init)
+      return RpcOk.from(init)
+    throw new Error()
   }
 
-  export function rewrap<T extends Ok.Infer<T>>(id: RpcId, result: T): RpcOk<Ok.Inner<T>>
+  export function rewrap<T>(id: RpcId, result: Ok<T>): RpcOk<T>
 
-  export function rewrap<T extends Err.Infer<T>>(id: RpcId, result: T): RpcErr
+  export function rewrap<T>(id: RpcId, result: Err<T>): RpcErr
 
-  export function rewrap<T extends Result.Infer<T>>(id: RpcId, result: T): RpcResponse<Ok.Inner<T>>
+  export function rewrap<T>(id: RpcId, result: Result<T, unknown>): RpcResponse<T>
 
-  export function rewrap<T extends Result.Infer<T>>(id: RpcId, result: T): RpcResponse<Ok.Inner<T>> {
-    if (result.isErr())
-      return RpcErr.rewrap(id, result)
-    return RpcOk.rewrap(id, result)
+  export function rewrap<T>(id: RpcId, result: Result<T, unknown>): RpcResponse<T> {
+    return result.isOk() ? RpcOk.rewrap(id, result) : RpcErr.rewrap(id, result)
   }
 
 }

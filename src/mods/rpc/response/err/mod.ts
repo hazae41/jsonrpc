@@ -139,7 +139,7 @@ export class RpcErr extends Err<RpcError> {
     return new RpcErr(init.id, RpcError.from(init.error))
   }
 
-  static rewrap<T extends Err.Infer<T>>(id: RpcId, result: T): RpcErr {
+  static rewrap(id: RpcId, result: Err<unknown>): RpcErr {
     return new RpcErr(id, RpcError.rewrap(result.inner))
   }
 
