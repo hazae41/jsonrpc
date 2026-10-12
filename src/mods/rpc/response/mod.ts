@@ -21,9 +21,8 @@ export namespace RpcResponse {
   export function from<T>(init: RpcResponseInit<T>): RpcResponse<T> {
     if ("error" in init)
       return RpcErr.from(init)
-    if ("result" in init)
+    else
       return RpcOk.from(init)
-    throw new Error()
   }
 
   export function rewrap<T>(id: RpcId, result: Ok<T>): RpcOk<T>
